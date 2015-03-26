@@ -1,0 +1,36 @@
+.header{
+  
+  background-color:green;
+  
+  padding-bottom: 114px;
+  
+}
+.form{
+  padding-left:155px;
+  background-color:lightblue;
+  
+}
+.login{
+  float:right;
+  margin-right:20px;
+  margin-top:10px;
+}
+
+.logo{
+  
+  float:left;
+}
+
+
+.content{
+  background-color:lightblue;
+  height:500px;
+}
+
+.footer{
+  
+  background-color:black;
+  height:100px;
+  
+  
+}

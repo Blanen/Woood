@@ -34,6 +34,63 @@ textarea {
 .editor-field {
     margin: 0.5em 0 0 0;
 }
+.header{
+  
+  background-color:green;
+  
+  height:3cm;
+  
+}
+
+.header img{
+    height:3cm;
+    width:auto;
+}
+.form{
+  padding-left:155px;
+  background-color:lightblue;
+  
+}
+.login{
+  float:right;
+  margin-right:5%;
+  margin-top:1%;
+}
+
+.logo{
+  
+  float:left;
+}
+
+
+.content{
+  background-color:lightblue;
+  height:13cm;
+}
+
+.footer{
+  
+  background-color:black;
+  height:3cm;
+  
+  
+}
+
+.cat-holder{
+    background-color:yellow;
+    width:-moz-available;
+    margin:1%;
+    height:40%;
+    float:left;
+    
+}
+.cat{
+    width:31.8%;
+    height:90%;
+    background-color:blue;
+    float:left;
+    margin:0.7%;
+}
 
 
 /* Styles for validation helpers
