@@ -92,6 +92,36 @@ textarea {
     margin:0.7%;
 }
 
+.cartProduct{
+  width:-moz-available;
+  height:10%;
+  padding-left:0%;
+  background-color:darkGreen;
+  
+}
+.cartPPicture{
+  float:left;
+  width:8%;
+  height:200%;
+  background-color:yellow;
+  margin-left:10%;
+  margin-top:1%;
+}
+.cartPDes{
+  float:left;
+  font-weight: bold;
+  padding-top:1%;
+  padding-left:1%;
+  font-size:large;
+}
+
+.cartPQuantity {
+  float:right;
+  padding-top:1%;
+  font-size:large;
+  padding-right: 20%
+}
+
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/

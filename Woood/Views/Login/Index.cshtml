@@ -1,0 +1,24 @@
+﻿@using Woood.Models;
+
+@model LoginViewModel
+
+@{Html.RenderPartial("BaseHead");}
+
+@using (Html.BeginForm())
+{
+<div class="grid-container">
+    <div class="grid-6">
+        <div class="small">Email:</div>
+        <div class="input">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+        <div class="small">Email:</div>
+        <div class="input">
+            @Html.TextBoxFor(model => model.Wachtwoord, new { @class = "form-control" })
+        </div>
+    </div>
+    <input type="submit" name="submit" value="Registrer" class="btn btn-default" />
+
+</div>
+}
+@{Html.RenderPartial("BaseFoot");}

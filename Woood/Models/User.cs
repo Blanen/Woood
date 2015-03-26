@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Woood.Models
 {
@@ -11,5 +14,13 @@ namespace Woood.Models
         string email { get; set; }
         string password { get; set; }
 
+    }
+
+    public class LoginViewModel
+    {
+        [Required(ErrorMessage = "Email is nog")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Wachtwoord is nodig")]
+        public string Wachtwoord { get; set; }
     }
 }
