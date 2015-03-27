@@ -12,12 +12,12 @@
         <div class="input">
             @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
         </div>
-        <div class="small">Email:</div>
+        <div class="small">Wachtwoord:</div>
         <div class="input">
-            @Html.TextBoxFor(model => model.Wachtwoord, new { @class = "form-control" })
+            @Html.PasswordFor(model => model.Wachtwoord, new { @class = "form-control" })
         </div>
     </div>
-    <input type="submit" name="submit" value="Registrer" class="btn btn-default" />
+    <input type="submit" name="submit" value="Register" class="btn btn-default" />
 
 </div>
 }

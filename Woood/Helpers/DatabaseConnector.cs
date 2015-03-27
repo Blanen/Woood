@@ -17,6 +17,7 @@ namespace Woood.Helpers
         {
             String connectionString = "server =" + address + ";user=" + username + ";password=" + password + ";database=" + database;
             conn = new MySqlConnection(connectionString);
+            conn.Open();
         }
 
         public MySqlConnection getConnection()
