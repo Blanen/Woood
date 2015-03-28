@@ -7,7 +7,7 @@ namespace Woood.Models
 {
     public class Cart
     {
-        List<CartProduct> ProductList { get; set; }
+        public List<CartProduct> ProductList { get; set; }
 
         public void addToCart(CartProduct product){
             ProductList.Add(product);
@@ -15,6 +15,8 @@ namespace Woood.Models
         public void removeFromCart(CartProduct product)
         {
             ProductList.Remove(product);
-        }
+        } 
+
+
     }
 }

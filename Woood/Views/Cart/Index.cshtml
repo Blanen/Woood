@@ -1,14 +1,24 @@
 ﻿@{Html.RenderPartial("BaseHead");}
-<div class="cartProduct">
-    <div class="cartPPicture">
-    </div>
-    <div class="cartPDes">
-        Dit is een product
-    </div>
-    <div class="cartPQuantity">
+@using Woood.Models
 
-        Hoeveelheid: 5
-    </div>
-</div>
+@{
+    Cart cart = ViewData["Cart"] as Cart;
+    foreach (CartProduct cartProduct in cart.ProductList)
+    {
+        Product product = cartProduct.Product;
+        <div class="cartProduct">
+            <div class="cartPPicture">
+                @product.naam
+            </div>
+            <div class="cartPDes">
+            </div>
+            <div class="cartPQuantity">
+
+                @cartProduct.Quantity
+            </div>
+        </div>
+
+    }
+}
 
 @{Html.RenderPartial("BaseFoot");}

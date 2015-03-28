@@ -1,4 +1,11 @@
-﻿<html>
+﻿@using Woood.Models;
+
+@{
+    User user = Session["user"] as User;
+}
+
+
+<html>
 
 <head>
 </head>
@@ -6,23 +13,39 @@
     <div class="header">
 
         <div class="logo">
-
+            <a href="/">
             <img src="/content/logo.png">
+            </a>
 
         </div>
 
+        @{
 
-        <div class="login">
+            if (user == null)
+            {
 
-            <a href="register">Registreer</a>
+                <div class="login">
 
-            <br>
-            <a href="login">Login</a>
+                    <a href="register">Registreer</a>
 
-            <br>
+                    <br>
+                    <a href="login">Login</a>
 
-            <a href="about.html">Over ons</a>
+                    <br>
 
-        </div>
+                    <a href="about.html">Over ons</a>
+
+                </div>
+
+            }else
+            {
+                <div class="login">
+                    <a href="logout">
+                        log uit
+                    </a>
+                </div>
+            }
+        }
+        
 
     </div>

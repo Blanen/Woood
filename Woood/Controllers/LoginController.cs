@@ -53,7 +53,7 @@ namespace Woood.Controllers
 
                             User user = new User(reader.GetInt32(0));
                             Session["User"] = user;
-                            Console.WriteLine(Session["User"]);
+                            Console.WriteLine(Session["user"]);
                             return RedirectToAction("Index", "");
                         
                         }

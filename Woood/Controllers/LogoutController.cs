@@ -6,14 +6,16 @@ using System.Web.Mvc;
 
 namespace Woood.Controllers
 {
-    public class HomeController : Controller
+    public class LogoutController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Logout/
 
         public ActionResult Index()
         {
-            return View();
+            Session["user"] = null;
+            return Redirect(Url.Content("~/"));
         }
+
     }
 }

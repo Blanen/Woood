@@ -7,7 +7,7 @@ namespace Woood.Models
 {
     public class CartProduct
     {
-        Product Product { get; set; }
-        int Quantity { get; set; }
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
     }
 }

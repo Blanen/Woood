@@ -15,14 +15,22 @@ namespace Woood.Controllers
         public ActionResult Index()
         {
             Cart cart = Session["cart"] as Cart;
-
+            ViewData["Cart"] = cart;
             return View();
         }
 
         [HttpPost]
-        public ActionResult addToCart(Product product)
+        public ActionResult addToCart(CartProduct product)
         {
-            return View();
+            Cart cart = Session["cart"] as Cart;
+            if (cart == null)
+            {
+                cart = new Cart();
+            }
+            cart.addToCart(product);
+            Session["cart"] = cart;
+
+            return RedirectToAction("Index");
         }
 
     }
