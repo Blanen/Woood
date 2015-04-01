@@ -3,21 +3,49 @@
 
 @{
     Cart cart = ViewData["Cart"] as Cart;
-    foreach (CartProduct cartProduct in cart.ProductList)
+    if (cart != null)
     {
-        Product product = cartProduct.Product;
-        <div class="cartProduct">
-            <div class="cartPPicture">
-                @product.naam
-            </div>
-            <div class="cartPDes">
-            </div>
-            <div class="cartPQuantity">
+        int total= 0;
+        int index = 0;
+        foreach (CartProduct cartProduct in cart.ProductList)
+        {
+            
+            total += cartProduct.Product.prijs * cartProduct.Quantity;
+            
+            Product product = cartProduct.Product;
+            <div class="cartProduct">
+                <div class="cartPThumb">
+                    <img src=@product.thumbnail>
+                </div>
+                <div class="cartPNaam">
+                    @product.naam
+                </div>
+                <div class="cartPOmschrijving">
+                    @product.beschrijving
+                </div>
+                <div class="cartPQuantity">
 
-                @cartProduct.Quantity
+                    Hoeveelheid: @cartProduct.Quantity
+                </div>
+                <div class="cartPPrijs">
+                    Prijs: @cartProduct.Product.prijs
+                </div>
+                <div class="cartPRemove">
+                    <a href="/cart/remove?index=@index">
+                        Verwijder
+                    </a>
+                </div>
             </div>
+            index++;
+
+        }
+        <div class="cartTotal">
+            Totaal @total
         </div>
-
+    }
+    else
+    {
+        <p> Uw Winkelwagen is leeg</p>
     }
 }
 

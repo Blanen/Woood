@@ -3,34 +3,30 @@
 @{Html.RenderPartial("BaseHead");}
 
 @{
-    Product product = ViewData["Product"] as Woood.Models.Product;
+    Product product = ViewData["Product"] as Product;
 }
 
 <div class="product">
     <div class="productImg">
         <img src=@product.afbeelding>
     </div>
-    Product naam : @product.naam
-    <br />
-    <br />
-    Beschrijving : @product.beschrijving
-    <br />
-    <p class="price">Prijs: <span>&euro; @product.prijs</span><p>
-        <br />
-        <br />
-        <br />
-        Voorraad : @product.voorraad
-        <br />
-        @{
-            if (product.korting != 0)
-            {
-                <br />
-                <br />
-                <i class="fa-2x">@product.korting<span>%</span></i>
-            }
+    <div class="productNaam">Product naam : @product.naam</div>
+    <div class="productDes">Beschrijving : @product.beschrijving</div>
+    <div class="productVoorrad">Voorraad : @product.voorraad  </div>
+    @{
+        if (product.korting != 0)
+        {
+            <div class="productKorting">Korting: @product.korting %</div>
         }
-        <br />
-        <input type="submit" value="Plaats in winkelwagen" name="submit" class="btn btn-huge btn-primary">
+    }
+    <form action="/cart/addToCart" method="post">
+
+        <input type="hidden" name="productID" value="@product.id" />
+        <div class="productAantal">
+            <label> Aantal: <input type="number" name="Quantity" value="1" min="1" /></label>
+        </div>
+        <input type="submit" value="Voeg toe aan winkelwagen" name="submit" class="btn btn-huge btn-primary">
+    </form>
 </div>
 
 

@@ -20,18 +20,29 @@ namespace Woood.Controllers
         }
 
         [HttpPost]
-        public ActionResult addToCart(CartProduct product)
+        public ActionResult addToCart(CartProductView product)
         {
             Cart cart = Session["cart"] as Cart;
             if (cart == null)
             {
                 cart = new Cart();
             }
-            cart.addToCart(product);
+            cart.addToCart(product.toCartProduct());
             Session["cart"] = cart;
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult remove(int index)
+        {
+
+            Cart cart = Session["cart"] as Cart;
+            cart.removeFromCart(index);
+            Session["cart"] = cart;
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
