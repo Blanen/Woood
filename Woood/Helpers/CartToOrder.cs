@@ -11,7 +11,7 @@ namespace Woood.Helpers
 
         public CartToOrder(Cart cart, User user)
         {
-            String Order_query = "INSERT INTO bestelling (";
+            String Order_query = "INSERT INTO bestelling (status, datum, user_id) VALUES ( @status, @datum, @user_id)";
             DatabaseConnector conn = new DatabaseConnector();
         }
 

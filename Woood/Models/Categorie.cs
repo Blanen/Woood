@@ -11,18 +11,16 @@ using Woood.Helpers;
 namespace Woood.Models
 {
 
-    public class User
+    public class Categorie
     {
         public int id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string rol { get; set; }
+        public string naam { get; set; }
 
-        public User(int ID)
+        public Categorie(int ID)
         {
             this.id = ID;
             DatabaseConnector conn = new DatabaseConnector();
-            String query = "SELECT * FROM user WHERE id = @id";
+            String query = "SELECT * FROM categorie WHERE id = @id";
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn.getConnection();
             cmd.CommandText = query;
@@ -35,17 +33,15 @@ namespace Woood.Models
 
             while (reader.Read())
             {
-                this.email = reader.GetString(0);
-                this.password = reader.GetString(1);
-                this.rol = reader.GetString(2);
+                this.naam = reader.GetString(0);
             }
             conn.getConnection().Close();
         }
 
-        public User(Register register)
+        public Categorie(Product product)
         {
-            this.email = register.email;
-            this.password = register.wachtwoord;
+            this.id = product.categorie_id;
+            this.naam = product.naam;
         }
 
         public bool exists()
@@ -53,14 +49,14 @@ namespace Woood.Models
             try
             {
                 DatabaseConnector conn = new DatabaseConnector();
-                String query = "SELECT * FROM user WHERE email = @email";
+                String query = "SELECT * FROM categorie WHERE naam = @naam";
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn.getConnection();
                 cmd.CommandText = query;
 
                 cmd.Prepare();
 
-                cmd.Parameters.AddWithValue("@email", this.email);
+                cmd.Parameters.AddWithValue("@naam", this.naam);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 conn.getConnection().Close();
@@ -77,20 +73,19 @@ namespace Woood.Models
             }
         }
 
-        public bool CreateUser()
+        public bool Create()
         {
             try
             {
                 DatabaseConnector conn = new DatabaseConnector();
-                String query = "INSERT INTO user (`email`,`wachtwoord`)VALUES(@email, @wachtwoord)";
+                String query = "INSERT INTO user (`naam`)VALUES(@naam)";
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn.getConnection();
                 cmd.CommandText = query;
 
                 cmd.Prepare();
 
-                cmd.Parameters.AddWithValue("@email", this.email);
-                cmd.Parameters.AddWithValue("@wachtwoord", this.password);
+                cmd.Parameters.AddWithValue("@naam", this.naam);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 conn.getConnection().Close();
@@ -104,13 +99,10 @@ namespace Woood.Models
         }
     }
 
-    public class LoginViewModel
+    public class CategorieViewModel
     {
-        [Required(ErrorMessage = "Email is nodig")]
+        [Required(ErrorMessage = "Naam is nodig")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Wachtwoord is nodig")]
-        public string Wachtwoord { get; set; }
-
     }
 
 }

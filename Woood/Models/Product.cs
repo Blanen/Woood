@@ -71,11 +71,36 @@ namespace Woood.Models
                 Console.WriteLine(e);
             }
         }
-    }
 
-    public class addProduct
-    {
+        public bool Create()
+        {
+            try
+            {
+                DatabaseConnector conn = new DatabaseConnector();
+                String query = "INSERT INTO product (`prijs`, `naam`, `voorraad`, `korting`, `beschrijving`, `categorie_id`)VALUES(@prijs, @naam, @voorraad, @korting, @beschrijving, @categorie_id)";
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn.getConnection();
+                cmd.CommandText = query;
 
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@prijs", this.prijs);
+                cmd.Parameters.AddWithValue("@naam", this.naam);
+                cmd.Parameters.AddWithValue("@voorraad", this.voorraad);
+                cmd.Parameters.AddWithValue("@korting", this.korting);
+                cmd.Parameters.AddWithValue("@beschrijving", this.beschrijving);
+                cmd.Parameters.AddWithValue("@categorie_id", this.categorie_id);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                conn.getConnection().Close();
+
+                return true;
+            }
+            catch (MySqlException e)
+            {
+                return false;
+            }
+        }
     }
 
 

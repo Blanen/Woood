@@ -5,13 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
-//using IntoSport.Helpers;
+using Woood.Helpers;
 
 namespace Woood.Models
 {
     public class Register
     {
+        public int user_id { get; set; }
         [Required(ErrorMessage = "Voornaam")]
         public string voornaam { get; set; }
         [Required(ErrorMessage = "Achternaam")]
@@ -32,45 +34,50 @@ namespace Woood.Models
         [StringLength(50, MinimumLength = 6, ErrorMessage = "Het wachtwoord moet minimaal 6 characters lang zijn")]
         public string wachtwoord { get; set; }
 
-        /*public bool IsEmailAvailable()
+        public bool Insert()
         {
-            Query query = new Query();
-            query.Select("*");
-            query.From("user");
-            query.Where("email = '" + this.email + "'");
+            DatabaseConnector conn = new DatabaseConnector();
+            String query = "SELECT MAX(id) FROM user";
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn.getConnection();
+            cmd.CommandText = query;
 
-            if (query.Execute().Count > 0)
+            cmd.Prepare();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
             {
+                this.user_id = reader.GetInt32(0);
+            }
+            reader.Close();
+            try
+            {
+
+                String query2 = "INSERT INTO klant (`user_id`, `voornaam`,`achternaam`,`adres`,`postcode`)VALUES(@user_id, @voornaam, @achternaam, @adres, @postcode)";
+                MySqlCommand cmd2 = new MySqlCommand();
+                cmd2.Connection = conn.getConnection();
+                cmd2.CommandText = query2;
+
+                cmd2.Prepare();
+
+                cmd2.Parameters.AddWithValue("@user_id", this.user_id);
+                cmd2.Parameters.AddWithValue("@voornaam", this.voornaam);
+                cmd2.Parameters.AddWithValue("@achternaam", this.achternaam);
+                cmd2.Parameters.AddWithValue("@adres", this.adres);
+                cmd2.Parameters.AddWithValue("@postcode", this.postcode);
+
+                cmd2.ExecuteReader();
+
+                conn.getConnection().Close();
+
+                return true;
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
                 return false;
             }
-            return true;
-
         }
-
-        public bool createAccount()
-        {
-            if (Insert() && IsEmailAvailable())
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool exists()
-        {
-            Query query = new Query();
-            query.Select("*");
-            query.From("user");
-            query.Where("email = '" + this.email + "'");
-            var result = query.Execute();
-
-            if (result.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }*/
-
-
     }
 }
