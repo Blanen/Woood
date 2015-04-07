@@ -73,5 +73,10 @@ namespace Woood.Models
         }
     }
 
+    public class addProduct
+    {
+
+    }
+
 
 }

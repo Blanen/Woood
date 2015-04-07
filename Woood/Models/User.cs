@@ -43,6 +43,14 @@ namespace Woood.Models
             conn.getConnection().Close();
         }
 
+        public bool isAdmin()
+        {
+            if (rol.Equals("beheerder"))
+            {
+                return true;
+            }
+        }
+
     }
 
     public class LoginViewModel
