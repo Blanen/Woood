@@ -1,0 +1,32 @@
+﻿@{Html.RenderPartial("BaseHead");}
+@using Woood.Models
+@{
+    List<Product> products = ViewData["products"] as List<Product>;
+    <div class="products wrapper">
+        @{
+            foreach (Product product in products)
+            {
+                <div class="product">
+                    <div class="product_img">
+                        <a href="~/product?id=@product.id">
+                            <img src="@product.afbeelding" />
+                        </a>
+                    </div>
+                    <div class="product_naam">
+                        <a href="~/product?id=@product.id">
+                            @product.naam
+                        </a>
+                    </div>
+                    <div class="product_prijs">
+                        @product.prijs
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}
+
+
+@{
+    Html.RenderPartial("BaseFoot");
+}

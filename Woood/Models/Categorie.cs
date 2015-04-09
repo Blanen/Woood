@@ -33,7 +33,8 @@ namespace Woood.Models
 
             while (reader.Read())
             {
-                this.naam = reader.GetString(0);
+                this.id = reader.GetInt32(0);
+                this.naam = reader.GetString(1);
             }
             conn.getConnection().Close();
         }
@@ -97,12 +98,33 @@ namespace Woood.Models
                 return false;
             }
         }
+
+
+
+        public static List<Categorie> getAll()
+        {
+            DatabaseConnector conn = new DatabaseConnector();
+            List<Categorie> categorieList = new List<Categorie>();
+            string query = "SELECT * FROM categorie";
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn.getConnection();
+            cmd.CommandText = query;
+
+            cmd.Prepare();
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                categorieList.Add(new Categorie(reader.GetInt32("id")));
+            }
+            return categorieList;
+        }
     }
 
     public class CategorieViewModel
     {
         [Required(ErrorMessage = "Naam is nodig")]
-        public string Email { get; set; }
+        public string Naam { get; set; }
     }
 
 }

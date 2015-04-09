@@ -7,22 +7,20 @@ using Woood.Models;
 
 namespace Woood.Controllers
 {
-    public class HomeController : Controller
+    public class OrderController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Order/
 
         public ActionResult Index()
         {
-            ViewData.Add("Categorie", Categorie.getAll());
+            User user = Session["user"] as User;
+            if (user != null)
+            {
+                ViewData.Add("Order", Order.getAll(user.id));
+            }
             return View();
         }
 
-        public ActionResult About()
-        {
-
-            return View();
-
-        }
     }
 }

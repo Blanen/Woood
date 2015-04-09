@@ -7,6 +7,7 @@
 @using (Html.BeginForm())
 {
 <div class="grid-container">
+    <h1> Login</h1>
     <div class="grid-6">
         <div class="small">Email:</div>
         <div class="input">
@@ -17,7 +18,10 @@
             @Html.PasswordFor(model => model.Wachtwoord, new { @class = "form-control" })
         </div>
     </div>
-    <input type="submit" name="submit" value="Register" class="btn btn-default" />
+    <input type="submit" name="submit" value="Login" class="btn btn-default" />
+    <a href="~/Register">
+        <h1> Of klik hier om te registreren</h1>
+    </a>
 
 </div>
 }

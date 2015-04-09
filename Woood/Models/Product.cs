@@ -101,6 +101,22 @@ namespace Woood.Models
                 return false;
             }
         }
+
+        public static List<Product> getAllInCategorie(int categorieID)
+        {
+            List<Product> lijst = new List<Product>();
+            DatabaseConnector conn = new DatabaseConnector();
+            String query = "SELECT id FROM product where categorie_id =" + categorieID.ToString();
+            MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Product product = new Product(reader.GetInt32(0));
+                lijst.Add(product);
+            }
+
+            return lijst;
+        }
     }
 
 

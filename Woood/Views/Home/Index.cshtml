@@ -1,18 +1,26 @@
 ﻿@{Html.RenderPartial("BaseHead");}
+@using Woood.Models;
+
+@{
+
+
 
     <div class="content">
+        @{
+            foreach (Categorie categorie in ViewData["Categorie"] as List<Categorie>)
+            {
+                <div class="cat-holder">
 
-        <div class="cat-holder">
-            <div class="cat"></div>
-            <div class="cat"></div>
-            <div class="cat"></div>
-        </div>
-        <div class="cat-holder">
-            <div class="cat"></div>
-            <div class="cat"></div>
-            <div class="cat"></div>
-        </div>
+                    <div class="cat">
+                        <a href="/categorie?id=@categorie.id">
+                            @categorie.naam
+                        </a>
+                    </div>
+
+                </div>
+            }
+        }
 
     </div>
-
-    @{Html.RenderPartial("BaseFoot");}
+}
+@{Html.RenderPartial("BaseFoot");}

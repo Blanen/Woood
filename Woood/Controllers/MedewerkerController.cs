@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 namespace Woood.Controllers
 {
-    public class AdminController : Controller
+    public class MedewerkerController : Controller
     {
         //
         // GET: /Admin/
@@ -18,7 +18,7 @@ namespace Woood.Controllers
         public ActionResult Index()
         {
             User user = Session["user"] as User;
-            if (user != null && user.isAdmin())
+            if (user != null && user.isMedewerker())
             {
                 return View();
             }
@@ -28,7 +28,7 @@ namespace Woood.Controllers
         public ActionResult Products()
         {
             User user = Session["user"] as User;
-            if (user != null && user.isAdmin())
+            if (user != null && user.isMedewerker())
             {
 
                 List<Product> productList = new List<Product>();
@@ -51,17 +51,17 @@ namespace Woood.Controllers
         public ActionResult Categories()
         {
             User user = Session["user"] as User;
-            if (user != null && user.isAdmin())
+            if (user != null && user.isMedewerker())
             {
-                List<Category> categoryList = new List<Category>();
+                List<Categorie> categoryList = new List<Categorie>();
                 DatabaseConnector conn = new DatabaseConnector();
                 String query = "SELECT id from categorie";
                 MySqlCommand cmd = new MySqlCommand(query, conn.getConnection());
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Category category = new Category(reader.GetInt32(0));
-                    categoryList.Add(category);
+                    Categorie categorie = new Categorie(reader.GetInt32(0));
+                    categoryList.Add(categorie);
                 }
                 ViewData["categories"] = categoryList;
                 return View();

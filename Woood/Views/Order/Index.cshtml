@@ -1,0 +1,24 @@
+﻿@{Html.RenderPartial("BaseHead");}
+@using Woood.Models
+
+<div class="order-holder">
+    @{foreach (OrderViewModel ovm in ViewData["Order"] as List<OrderViewModel>)
+    {
+        <div class="order">
+            Totaal prijs : @ovm.totaal_prijs
+            <br />
+            Order Status : @ovm.status
+            <br />
+            Gemaakt op : @ovm.datum
+            <br />
+            <input type="submit" name="order" value="Betalen" class="btn btn-default" />
+            <input type="submit" name="cancel" value="Annuleren" class="btn btn-default" />
+        </div>
+
+    }
+    }
+</div>
+
+@{
+    Html.RenderPartial("BaseFoot");
+}

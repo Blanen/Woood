@@ -48,6 +48,15 @@ namespace Woood.Models
             this.password = register.wachtwoord;
         }
 
+        public bool isMedewerker()
+        {
+            if (rol.Equals("medewerker"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public bool exists()
         {
             try
